@@ -78,7 +78,7 @@ body {
   }
 }
 
-main {
+.dungeon-page {
   height: 50svh;
   width: 100%;
   position: relative;
@@ -89,8 +89,40 @@ main {
   background-size: cover;
   background-attachment: fixed;
 }
+header {
+  height: 40svh;
+  width: 100%;
+  background: var(--clr-drk) url("../img/honeycomb.svg") no-repeat right bottom;
+  background-size: cover;
+  background-attachment: fixed;
+  h1 {
+    font-size: 4rem;
+  }
+}
 
-
+.releases {
+  padding: 25px;
+  section {
+    height: 25svh;
+    width: min(100% - 30px, 700px);
+    margin: 25px;
+    border-radius: var(--app-border-rad);
+    background-color: var(--clr-drk);
+    h3 {
+      font-size: 1.8rem;
+      font-weight: 600;
+    }
+    h4 {
+      font-size: 1.4rem;
+      color: var(--clr-primary);
+      font-weight: 400;
+    }
+    a {
+      font-size: 1.2rem;
+      font-weight: 300;
+    }
+  }
+}
 /* 
 .btn {
   width: fit-content;
