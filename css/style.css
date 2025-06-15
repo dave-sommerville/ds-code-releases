@@ -139,7 +139,7 @@ header {
 } */
 
 
-footer {
+.index-footer {
   height: 100px;
   line-height: 50px;
   text-align: center;
@@ -147,5 +147,14 @@ footer {
   a {
     text-decoration: none;
     color: var(--clr-light);
+  }
+}
+.dungeon-footer {
+  img {
+    width: 30svw;
+    transition: all 0.2s ease-in-out;
+  }
+  img:hover {
+    filter: brightness(1.3);
   }
 }
