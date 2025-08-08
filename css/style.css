@@ -58,7 +58,6 @@ a {
 body {
   scroll-behavior: smooth;
   background-color: var(--clr-bg);
-  text-align: center;
   height: 100svh;
 	font-family: "Space Grotesk", "Outfit", "Inter", sans-serif;
 	font-size: 1.6rem;
@@ -77,7 +76,9 @@ body {
     color: var(--clr-light);
   }
 }
-
+.home {
+  text-align: center;
+}
 .dungeon-page {
   height: 50svh;
   width: 100%;
@@ -88,6 +89,16 @@ body {
   background: var(--clr-drk) url("../img/honeycomb.svg") no-repeat right center;
   background-size: cover;
   background-attachment: fixed;
+}
+.read-me {
+  padding: 100px 25px;
+  h2 {
+    margin-top: 50px;
+    text-align: center;
+  }
+  p {
+    margin-bottom: 15px;
+  }
 }
 header {
   height: 40svh;
@@ -123,21 +134,6 @@ header {
     }
   }
 }
-/* 
-.btn {
-  width: fit-content;
-  height: 50px;
-  line-height: 50px;
-  padding: 0 var(--app-spacing);
-  margin-top: var(--app-spacing);
-  border-radius: var(--app-border-rad);
-  background-color: var(--clr-primary);
-  border: solid 1px var(--clr-light);
-  color: var(--clr-light);
-  font-size: var(--app-font-size);
-  font-weight: 600;
-} */
-
 
 .index-footer {
   height: 100px;
