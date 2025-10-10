@@ -1,24 +1,45 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>Global Parallax Controller</title>
+  <title>Parallax Playground | DS Code</title>
+  <meta charset="utf-8" />
+  <link rel="icon" type="image/png" href="img/favicon.png" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="theme-color" content="#000000" />
+  <meta name="author" content="Dave Sommerville" />
+  <meta name="description" content="Parallax Playground | DS Code" />
+  <meta name="msvalidate.01" content="603CEA2226BD19E0768809CC6DD364FD" />
+  <!-- Open Graph -->
+  <meta property="og:title" content="DS Code | Dave Sommerville" />
+  <meta property="og:description" content="Parallax Playground | DS Code" />
+  <meta property="og:image" content="https://ds-code.ca/image/site-preview.png" />
+  <meta property="og:url" content="https://ds-code.ca" />
+  <meta property="og:type" content="website" />
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="DS Code | Dave Sommerville" />
+  <meta name="twitter:description" content="Parallax Playground | DS Code" />
+  <meta name="twitter:image" content="https://ds-code.ca/image/site-preview.png" />
   <style>
     body {
       margin: 0;
       font-family: system-ui, sans-serif;
       color: #fff;
       background-size: cover;
-
     }
-
     header {
       position: relative;
       overflow: hidden;
-      height: 300vh;
+      height: 200vh;
     }
-    .header.planet {
-      background-image: url("https://cdn.pixabay.com/photo/2017/08/15/08/23/stars-2643089_1280.jpg");
+    .hero-banner {
+      width: 100svw;
+      height: 100svh;
+      position: fixed;
+      top: 0;
+      left: 0;
+      object-fit: cover;
+      z-index: -500;
     }
     .parallax {
       position: absolute;
@@ -28,10 +49,8 @@
       background-size: cover;
       background-position: center;
       border-radius: 10px;
-      opacity: 0.8;
       transition: all 0.3s ease;
     }
-
     .controls {
       position: fixed;
       top: 1rem;
@@ -44,52 +63,39 @@
       overflow-y: auto;
       max-height: 95vh;
     }
-
     .controls h3 {
       margin-top: 0;
       color: #00d0ff;
       text-align: center;
     }
-
     .controls label {
       display: block;
       margin: 0.25rem 0;
       font-size: 0.9rem;
     }
-
     .controls input[type="range"] {
       width: 100%;
     }
-
     .controls fieldset {
       border: none;
       margin: 0.75rem 0;
     }
-
     .layer-controls {
       background: rgba(255, 255, 255, 0.05);
       padding: 0.5rem;
       border-radius: 6px;
       margin-bottom: 0.5rem;
     }
-
     .layer-controls h4 {
       margin: 0.25rem 0;
       font-size: 0.9rem;
       color: #00ffa5;
     }
-
-    .content-placeholder {
-      height: 200vh;
-      padding: 2rem;
-      background: #222;
-    }
   </style>
 </head>
 <body>
-
   <header id="page-top" class="header f-col">
-    <img src="./src/media/amanpreet-deol-1ci4qIfZ1Yo-unsplash.jpg" class="hero-banner" hidden>
+    <img src="https://cdn.pixabay.com/photo/2017/08/15/08/23/stars-2643089_1280.jpg" class="hero-banner">
     <div class="parallax one"></div>
     <div class="parallax two"></div>
     <div class="parallax three"></div>
@@ -97,47 +103,29 @@
     <div class="parallax five"></div>
     <div class="parallax six"></div>
     <div class="parallax seven"></div>
-
-    <div style="z-index: 1000; display: flex; flex-direction: column; align-items: center;">
-      <h1>theForks.io</h1>
-      <img src="./src/media/theforks-logo.svg" alt="theForks.io Logo" style="max-width:200px;">
-      <h2>Winnipeg's Open-Source Repository</h2>
-      <a href="./portfolio.html" target="_blank" class="btn">Visit the Repo</a>
-    </div>
   </header>
-
-  <section class="content-placeholder">
-    <h1>Content Below the Header</h1>
-    <p>Scroll down to see the parallax effect on the elements in the header!</p>
-  </section>
-
   <!-- === CONTROL PANEL === -->
   <div class="controls">
     <h3>Parallax Controls</h3>
-
     <!-- Global controls -->
     <fieldset>
       <legend>Global Settings</legend>
-
       <label for="sizeControl">Size (px):</label>
       <input type="range" id="sizeControl" min="100" max="600" step="10" value="200">
-
       <fieldset>
         <legend>Background Image</legend>
-        <label><input type="radio" name="bgChoice" value="ghost" checked>Ghost</label>
-        <label><input type="radio" name="bgChoice" value="planet">Planet</label>
+        <label><input type="radio" name="bgChoice" value="planet" checked>Planet</label>
+        <label><input type="radio" name="bgChoice" value="ghost">Ghost</label>
         <label><input type="radio" name="bgChoice" value="guinea-pig">Guinea Pig</label>
         <label><input type="radio" name="bgChoice" value="hamburger">Hamburger</label>
       </fieldset>
     </fieldset>
-
     <!-- Per-layer speed controls -->
     <fieldset>
       <legend>Layer Speeds</legend>
       <div id="layerSpeedControls"></div>
     </fieldset>
   </div>
-
   <script>
     function select(selector, scope = document) {
       return scope.querySelector(selector);
@@ -156,10 +144,10 @@
       { selector: ".parallax.seven", speed: 1.6 }
     ];
     const bgImages = {
-      "ghost": "",
-      "guinea-pig": "",
-      "hamburger": "",
-      "planet": "planet"
+      "ghost": "https://cdn.pixabay.com/photo/2023/09/07/02/30/ai-generated-8238122_1280.jpg",
+      "guinea-pig": "https://cdn.pixabay.com/photo/2019/06/13/06/02/travel-4270800_640.png",
+      "hamburger": "https://cdn.pixabay.com/photo/2025/08/06/15/11/ai-generated-9759043_1280.jpg",
+      "planet": "https://cdn.pixabay.com/photo/2017/08/15/08/23/stars-2643089_1280.jpg"
     };
     const baseImages = {
       "ghost": "./img/ghost.png",
@@ -169,11 +157,12 @@
     };
 
     // Initialize parallax layers
+    const totalLayers = parallaxLayers.length;
     parallaxLayers.forEach(({ selector }, i) => {
       const layer = select(selector);
-      layer.style.top = `${i * 12 + 10}%`;
-      layer.style.left = `${i * 8 + 5}%`;
-      layer.style.backgroundImage = `url(${baseImages["1ci4qIfZ1Yo-unsplash.jpg"]})`;
+      layer.style.top = `${15 + i * 12}%`; // you can keep top spacing as-is
+      layer.style.left = `${(i / (totalLayers - 1)) * 90 + 10}%`; // spread across 5% → 95%
+      layer.style.backgroundImage = `url(${baseImages["planet"]})`; // default image
     });
 
     // Scroll behavior
@@ -185,35 +174,31 @@
         layer.style.transform = `translateY(${yPos}px)`;
       });
     });
-
     // === GLOBAL CONTROLS ===
     const sizeControl = select("#sizeControl");
     const bgRadios = document.querySelectorAll('input[name="bgChoice"]');
     const layerSpeedControls = select("#layerSpeedControls");
-    const headerDisplay = select('.header');
+    const headerDisplay = select('.hero-banner');
     // Generate per-layer speed sliders
     parallaxLayers.forEach((layer, i) => {
       const wrapper = document.createElement("div");
       wrapper.className = "layer-controls";
-
       const title = document.createElement("h4");
       title.textContent = `Layer ${i + 1}`;
       wrapper.appendChild(title);
 
       const slider = document.createElement("input");
       slider.type = "range";
-      slider.min = -3;
-      slider.max = 3;
+      slider.min = -2;
+      slider.max = 2;
       slider.step = 0.1;
       slider.value = layer.speed;
       slider.addEventListener("input", () => {
         layer.speed = parseFloat(slider.value);
       });
-
       wrapper.appendChild(slider);
       layerSpeedControls.appendChild(wrapper);
     });
-
     // Apply global size to all layers
     listen("input", sizeControl, () => {
       document.querySelectorAll(".parallax").forEach(layer => {
@@ -224,7 +209,7 @@
     bgRadios.forEach(radio => {
       listen("change", radio, () => {
         if (radio.checked) {
-          headerDisplay.classList.add(bgImages[radio.value]);
+          headerDisplay.src =bgImages[radio.value];
           const imageUrl = baseImages[radio.value];
           document.querySelectorAll(".parallax").forEach(layer => {
             layer.style.backgroundImage = `url(${imageUrl})`;
